@@ -60,7 +60,7 @@ public interface WorkflowDefinitionDAO {
      * @param workflow Workflow object
      * @throws InternalWorkflowException
      */
-    void updateWorkflow(Workflow workflow) throws InternalWorkflowException;
+    void updateWorkflow(String workflowId, Workflow workflow) throws InternalWorkflowException;
 
     /**
      * Retrieve all the Workflows for a tenant

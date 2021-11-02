@@ -69,6 +69,6 @@ public interface WorkflowDefinitionManager {
      * @param id ID of workflow to remove
      * @throws WorkflowException
      */
-    void removeWorkflow(String id) throws WorkflowException;
+    void removeWorkflow(String workflowId) throws WorkflowException;
 
 }
