@@ -18,12 +18,57 @@
 
 package org.wso2.carbon.identity.workflow.mgt;
 
+import org.wso2.carbon.identity.workflow.mgt.bean.Parameter;
+import org.wso2.carbon.identity.workflow.mgt.bean.Workflow;
+import org.wso2.carbon.identity.workflow.mgt.exception.WorkflowException;
+
+import java.util.List;
+
+/**
+ * List methods that can be associated to workflow definitions, eg:- Add definition, etc
+ */
 public interface WorkflowDefinitionManager {
 
-    void addWorkflowDefinition (String workflowDefinitionId, String workflowDefinitionName, String workflowDefinitionDescription);
+    /**
+     * Add new workflow
+     *
+     * @param workflowDTO   Workflow details
+     * @param parameterList List of parameters
+     * @param tenantId      tenant id
+     * @throws WorkflowException
+     */
+    void addWorkflow(Workflow workflowDTO, List<Parameter> parameterList, int tenantId) throws WorkflowException;
 
-    void getWorkflowDefinition ();
+    /**
+     * Retrieve workflow from workflow ID
+     *
+     * @param workflowId workflow id
+     * @throws WorkflowException
+     */
+    Workflow getWorkflowByID(String workflowId) throws WorkflowException;
 
-    void removeWorkflowDefinition ();
+    /**
+     * List parameters of a workflow
+     *
+     * @param workflowId workflow id
+     * @throws WorkflowException
+     */
+    List<Parameter> getWorkflowParameters(String workflowId) throws WorkflowException;
+
+    /**
+     * List workflows for a tenant
+     *
+     * @param tenantId Tenant ID
+     * @throws WorkflowException
+     */
+    List<Workflow> getAllWorkflows(int tenantId) throws WorkflowException;
+
+    /**
+     * Remove a workflow
+     *
+     * @param id ID of workflow to remove
+     * @throws WorkflowException
+     */
+    void removeWorkflow(String id) throws WorkflowException;
 
 }
