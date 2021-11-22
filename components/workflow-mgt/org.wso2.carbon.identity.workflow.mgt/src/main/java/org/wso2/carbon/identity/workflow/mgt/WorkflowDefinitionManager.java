@@ -48,6 +48,14 @@ public interface WorkflowDefinitionManager {
     Workflow getWorkflowByID(String workflowId) throws WorkflowException;
 
     /**
+     * Update a workflow
+     *
+     * @param workflow workflow details
+     * @throws WorkflowException
+     */
+    void updateWorkflow(Workflow workflow) throws WorkflowException;
+
+    /**
      * List parameters of a workflow
      *
      * @param workflowId workflow id
@@ -61,12 +69,12 @@ public interface WorkflowDefinitionManager {
      * @param tenantId Tenant ID
      * @throws WorkflowException
      */
-    List<Workflow> getAllWorkflows(int tenantId) throws WorkflowException;
+    List<Workflow> listWorkflows(int tenantId) throws WorkflowException;
 
     /**
      * Remove a workflow
      *
-     * @param id ID of workflow to remove
+     * @param workflowId ID of workflow to remove
      * @throws WorkflowException
      */
     void removeWorkflow(String workflowId) throws WorkflowException;
