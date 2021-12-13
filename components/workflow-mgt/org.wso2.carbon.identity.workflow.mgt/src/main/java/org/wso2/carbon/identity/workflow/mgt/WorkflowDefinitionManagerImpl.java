@@ -18,8 +18,8 @@
 
 package org.wso2.carbon.identity.workflow.mgt;
 
-import org.wso2.carbon.identity.workflow.mgt.bean.Parameter;
-import org.wso2.carbon.identity.workflow.mgt.bean.Workflow;
+import org.wso2.carbon.identity.workflow.mgt.bean.Step;
+import org.wso2.carbon.identity.workflow.mgt.bean.WorkflowDefinition;
 import org.wso2.carbon.identity.workflow.mgt.exception.WorkflowException;
 
 import java.util.List;
@@ -27,24 +27,29 @@ import java.util.List;
 public class WorkflowDefinitionManagerImpl implements WorkflowDefinitionManager {
 
     @Override
-    public void addWorkflow(Workflow workflowDTO, List<Parameter> parameterList, int tenantId) throws WorkflowException {
+    public void addWorkflow(WorkflowDefinition workflowDefinition, int tenantId) throws WorkflowException {
 
     }
 
     @Override
-    public Workflow getWorkflowByID(String workflowId) throws WorkflowException {
+    public WorkflowDefinition getWorkflowByID(String workflowId) throws WorkflowException {
 
         return null;
     }
 
     @Override
-    public List<Parameter> getWorkflowParameters(String workflowId) throws WorkflowException {
+    public void updateWorkflow(WorkflowDefinition workflowDefinition) throws WorkflowException {
+
+    }
+
+    @Override
+    public List<Step> getWorkflowSteps(String workflowId) throws WorkflowException {
 
         return null;
     }
 
     @Override
-    public List<Workflow> getAllWorkflows(int tenantId) throws WorkflowException {
+    public List<WorkflowDefinition> listWorkflows(int tenantId, int limit, int offset) throws WorkflowException {
 
         return null;
     }

@@ -25,6 +25,45 @@ public class WorkflowDefinition implements Serializable {
     private String workflowId;
     private String workflowName;
     private String workflowDescription;
-    
+    private Step[] steps;
 
+    public String getWorkflowId() {
+
+        return workflowId;
+    }
+
+    public void setWorkflowId(String workflowId) {
+
+        this.workflowId = workflowId;
+    }
+
+    public String getWorkflowName() {
+
+        return workflowName;
+    }
+
+    public void setWorkflowName(String workflowName) {
+
+        this.workflowName = workflowName;
+    }
+
+    public String getWorkflowDescription() {
+
+        return workflowDescription;
+    }
+
+    public void setWorkflowDescription(String workflowDescription) {
+
+        this.workflowDescription = workflowDescription;
+    }
+
+    public Step[] getSteps() {
+
+        return steps;
+    }
+
+    public void setSteps(Step[] steps) {
+
+        this.steps = steps;
+    }
 }

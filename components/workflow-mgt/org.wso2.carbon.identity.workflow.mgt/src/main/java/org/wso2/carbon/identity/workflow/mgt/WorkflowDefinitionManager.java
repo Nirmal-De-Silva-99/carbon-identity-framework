@@ -18,8 +18,8 @@
 
 package org.wso2.carbon.identity.workflow.mgt;
 
-import org.wso2.carbon.identity.workflow.mgt.bean.Parameter;
-import org.wso2.carbon.identity.workflow.mgt.bean.Workflow;
+import org.wso2.carbon.identity.workflow.mgt.bean.Step;
+import org.wso2.carbon.identity.workflow.mgt.bean.WorkflowDefinition;
 import org.wso2.carbon.identity.workflow.mgt.exception.WorkflowException;
 
 import java.util.List;
@@ -32,12 +32,11 @@ public interface WorkflowDefinitionManager {
     /**
      * Add new workflow
      *
-     * @param workflowDTO   Workflow details
-     * @param parameterList List of parameters
-     * @param tenantId      tenant id
+     * @param workflowDefinition    Workflow details
+     * @param tenantId              tenant id
      * @throws WorkflowException
      */
-    void addWorkflow(Workflow workflowDTO, List<Parameter> parameterList, int tenantId) throws WorkflowException;
+    void addWorkflow(WorkflowDefinition workflowDefinition, int tenantId) throws WorkflowException;
 
     /**
      * Retrieve workflow from workflow ID
@@ -45,31 +44,33 @@ public interface WorkflowDefinitionManager {
      * @param workflowId workflow id
      * @throws WorkflowException
      */
-    Workflow getWorkflowByID(String workflowId) throws WorkflowException;
+    WorkflowDefinition getWorkflowByID(String workflowId) throws WorkflowException;
 
     /**
      * Update a workflow
      *
-     * @param workflow workflow details
+     * @param workflowDefinition workflow details
      * @throws WorkflowException
      */
-    void updateWorkflow(Workflow workflow) throws WorkflowException;
+    void updateWorkflow(WorkflowDefinition workflowDefinition) throws WorkflowException;
 
     /**
-     * List parameters of a workflow
+     * List steps of a workflow
      *
      * @param workflowId workflow id
      * @throws WorkflowException
      */
-    List<Parameter> getWorkflowParameters(String workflowId) throws WorkflowException;
+    List<Step> getWorkflowSteps(String workflowId) throws WorkflowException;
 
     /**
      * List workflows for a tenant
      *
      * @param tenantId Tenant ID
+     * @param limit Limit
+     * @param offset Offset
      * @throws WorkflowException
      */
-    List<Workflow> listWorkflows(int tenantId) throws WorkflowException;
+    List<WorkflowDefinition> listWorkflows(int tenantId, int limit, int offset) throws WorkflowException;
 
     /**
      * Remove a workflow

@@ -26,6 +26,7 @@ import org.wso2.carbon.identity.workflow.mgt.bean.Entity;
 import org.wso2.carbon.identity.workflow.mgt.bean.Parameter;
 import org.wso2.carbon.identity.workflow.mgt.bean.Workflow;
 import org.wso2.carbon.identity.workflow.mgt.bean.WorkflowAssociation;
+import org.wso2.carbon.identity.workflow.mgt.bean.WorkflowDefinition;
 import org.wso2.carbon.identity.workflow.mgt.bean.WorkflowRequest;
 import org.wso2.carbon.identity.workflow.mgt.bean.WorkflowRequestAssociation;
 import org.wso2.carbon.identity.workflow.mgt.dao.AssociationDAO;
@@ -56,10 +57,12 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * WorkflowService class provides all the common functionality for the basic workflows.
@@ -329,6 +332,27 @@ public class WorkflowManagementServiceImpl implements WorkflowManagementService 
     @Override
     public void addWorkflow(Workflow workflow,
                             List<Parameter> parameterList, int tenantId) throws WorkflowException {
+
+//        WorkflowDefinitionManager manager = new WorkflowDefinitionManagerImpl();
+//
+//        WorkflowDefinition workflowDefinition = new WorkflowDefinition();
+//
+//        workflowDefinition.setWorkflowId(workflow.getWorkflowId());
+//        workflowDefinition.setWorkflowName(workflow.getWorkflowName());
+//        workflowDefinition.setWorkflowDescription(workflow.getWorkflowDescription());
+//
+//        for (Parameter parameter : parameterList) {
+//            if (Objects.equals(parameter.getParamName(), "UserAndRole")) {
+//                String[] qNameTokens = parameter.getqName().split("-");
+//                for (String token : qNameTokens) {
+//                    if (Objects.equals(token, "roles")) {
+//
+//                    }
+//                }
+//            }
+//        }
+//
+//        manager.addWorkflow(workflowDefinition, tenantId);
 
         List<WorkflowListener> workflowListenerList =
                 WorkflowServiceDataHolder.getInstance().getWorkflowListenerList();
