@@ -20,6 +20,7 @@ package org.wso2.carbon.identity.workflow.mgt.dao;
 
 import org.wso2.carbon.identity.core.util.IdentityDatabaseUtil;
 import org.wso2.carbon.identity.workflow.mgt.bean.Workflow;
+import org.wso2.carbon.identity.workflow.mgt.bean.WorkflowDefinition;
 import org.wso2.carbon.identity.workflow.mgt.exception.InternalWorkflowException;
 import org.wso2.carbon.identity.workflow.mgt.util.SQLConstants;
 
@@ -33,31 +34,12 @@ public class WorkflowDefinitionDAOImpl implements WorkflowDefinitionDAO {
     private final String errorMessage = "Error when executing the SQL query ";
 
     @Override
-    public void addWorkflow(Workflow workflow, int tenantId) throws InternalWorkflowException {
+    public void addWorkflow(WorkflowDefinition workflowDefinition, int tenantId) throws InternalWorkflowException {
 
-        Connection connection = IdentityDatabaseUtil.getDBConnection();
-        PreparedStatement prepStmt = null;
-        String query = SQLConstants.ADD_WORKFLOW_QUERY;
-        try {
-            prepStmt = connection.prepareStatement(query);
-            prepStmt.setString(1, workflow.getWorkflowId());
-            prepStmt.setString(2, workflow.getWorkflowName());
-            prepStmt.setString(3, workflow.getWorkflowDescription());
-            prepStmt.setString(4, workflow.getTemplateId());
-            prepStmt.setString(5, workflow.getWorkflowImplId());
-            prepStmt.setInt(6, tenantId);
-            prepStmt.executeUpdate();
-            IdentityDatabaseUtil.commitTransaction(connection);
-        } catch (SQLException e) {
-            IdentityDatabaseUtil.rollbackTransaction(connection);
-            throw new InternalWorkflowException(errorMessage, e);
-        } finally {
-            IdentityDatabaseUtil.closeAllConnections(connection, null, prepStmt);
-        }
     }
 
     @Override
-    public Workflow getWorkflow(String workflowId) throws InternalWorkflowException {
+    public WorkflowDefinition getWorkflow(String workflowId) throws InternalWorkflowException {
 
         return null;
     }
@@ -68,12 +50,12 @@ public class WorkflowDefinitionDAOImpl implements WorkflowDefinitionDAO {
     }
 
     @Override
-    public void updateWorkflow(String workflowId, Workflow workflow) throws InternalWorkflowException {
+    public void updateWorkflow(WorkflowDefinition workflowDefinition) throws InternalWorkflowException {
 
     }
 
     @Override
-    public List<Workflow> listWorkflows(int tenantId) throws InternalWorkflowException {
+    public List<WorkflowDefinition> listWorkflows(int tenantId) throws InternalWorkflowException {
 
         return null;
     }

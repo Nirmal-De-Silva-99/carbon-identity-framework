@@ -36,7 +36,7 @@ public interface WorkflowDefinitionManager {
      * @param tenantId              tenant id
      * @throws WorkflowException
      */
-    void addWorkflow(WorkflowDefinition workflowDefinition, int tenantId) throws WorkflowException;
+    String addWorkflow(WorkflowDefinition workflowDefinition, int tenantId) throws Exception;
 
     /**
      * Retrieve workflow from workflow ID
@@ -44,7 +44,7 @@ public interface WorkflowDefinitionManager {
      * @param workflowId workflow id
      * @throws WorkflowException
      */
-    WorkflowDefinition getWorkflowByID(String workflowId) throws WorkflowException;
+    WorkflowDefinition getWorkflowByID(String workflowId) throws Exception;
 
     /**
      * Update a workflow
@@ -52,7 +52,7 @@ public interface WorkflowDefinitionManager {
      * @param workflowDefinition workflow details
      * @throws WorkflowException
      */
-    void updateWorkflow(WorkflowDefinition workflowDefinition) throws WorkflowException;
+    String updateWorkflow(WorkflowDefinition workflowDefinition) throws Exception;
 
     /**
      * List steps of a workflow

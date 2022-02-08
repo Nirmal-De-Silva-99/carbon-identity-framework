@@ -22,23 +22,52 @@ import org.wso2.carbon.identity.workflow.mgt.bean.Step;
 import org.wso2.carbon.identity.workflow.mgt.bean.WorkflowDefinition;
 import org.wso2.carbon.identity.workflow.mgt.exception.WorkflowException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class WorkflowDefinitionManagerImpl implements WorkflowDefinitionManager {
 
+    private static volatile WorkflowDefinitionManagerImpl workflowDefinitionManagerImpl;
+
+    public Map<String, WorkflowDefinition> workflowDefinitions = new HashMap<String, WorkflowDefinition>();
+
     @Override
-    public void addWorkflow(WorkflowDefinition workflowDefinition, int tenantId) throws WorkflowException {
+    public String addWorkflow(WorkflowDefinition workflowDefinition, int tenantId) throws Exception {
+
+        if (workflowDefinition.getWorkflowName().isEmpty()) {
+            throw new Exception("Name is invalid");
+        }
+        //Code to persist the workflow definition
+        String workflowId = UUID.randomUUID().toString();
+        System.out.println(workflowId);
+        workflowDefinitions.put(workflowId, workflowDefinition);
+
+        return workflowId;
+    }
+
+    @Override
+    public WorkflowDefinition getWorkflowByID(String workflowId) throws Exception {
+
+        if (workflowId.isEmpty()) {
+            throw new Exception("ID is invalid");
+        }
+        return workflowDefinitions.get(workflowId);
+
 
     }
 
     @Override
-    public WorkflowDefinition getWorkflowByID(String workflowId) throws WorkflowException {
+    public String updateWorkflow(WorkflowDefinition workflowDefinition) throws Exception {
 
-        return null;
-    }
+        if (workflowDefinition.getWorkflowName().isEmpty()) {
+            throw new Exception("Name is invalid");
+        }
 
-    @Override
-    public void updateWorkflow(WorkflowDefinition workflowDefinition) throws WorkflowException {
+        workflowDefinitions.put(workflowDefinition.getWorkflowId(), workflowDefinition);
+
+        return workflowDefinition.getWorkflowId();
 
     }
 
@@ -56,6 +85,25 @@ public class WorkflowDefinitionManagerImpl implements WorkflowDefinitionManager 
 
     @Override
     public void removeWorkflow(String workflowId) throws WorkflowException {
+        workflowDefinitions.remove(workflowId);
 
     }
+
+    /**
+     * Singleton method
+     *
+     * @return WorkflowDefinitionManagerImpl
+     */
+    public static WorkflowDefinitionManagerImpl getInstance() {
+
+        if (workflowDefinitionManagerImpl == null) {
+            synchronized (WorkflowDefinitionManagerImpl.class) {
+                if (workflowDefinitionManagerImpl == null) {
+                    workflowDefinitionManagerImpl = new WorkflowDefinitionManagerImpl();
+                }
+            }
+        }
+        return workflowDefinitionManagerImpl;
+    }
+
 }

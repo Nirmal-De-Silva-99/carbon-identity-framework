@@ -19,6 +19,7 @@
 package org.wso2.carbon.identity.workflow.mgt.dao;
 
 import org.wso2.carbon.identity.workflow.mgt.bean.Workflow;
+import org.wso2.carbon.identity.workflow.mgt.bean.WorkflowDefinition;
 import org.wso2.carbon.identity.workflow.mgt.exception.InternalWorkflowException;
 
 import java.util.List;
@@ -31,11 +32,11 @@ public interface WorkflowDefinitionDAO {
     /**
      * Adding a workflow
      *
-     * @param workflow Workflow bean object
+     * @param workflowDefinition Workflow bean object
      * @param tenantId Tenant ID
      * @throws InternalWorkflowException
      */
-    void addWorkflow(Workflow workflow, int tenantId) throws InternalWorkflowException;
+    void addWorkflow(WorkflowDefinition workflowDefinition, int tenantId) throws InternalWorkflowException;
 
     /**
      * Get a Workflow object for given workflow Id
@@ -44,7 +45,7 @@ public interface WorkflowDefinitionDAO {
      * @return Workflow object
      * @throws InternalWorkflowException
      */
-    Workflow getWorkflow(String workflowId) throws InternalWorkflowException;
+    WorkflowDefinition getWorkflow(String workflowId) throws InternalWorkflowException;
 
     /**
      * Remove Workflow from the DB
@@ -57,10 +58,10 @@ public interface WorkflowDefinitionDAO {
     /**
      * Update current workflow
      *
-     * @param workflow Workflow object
+     * @param workflowDefinition Workflow object
      * @throws InternalWorkflowException
      */
-    void updateWorkflow(String workflowId, Workflow workflow) throws InternalWorkflowException;
+    void updateWorkflow(WorkflowDefinition workflowDefinition) throws InternalWorkflowException;
 
     /**
      * Retrieve all the Workflows for a tenant
@@ -69,6 +70,6 @@ public interface WorkflowDefinitionDAO {
      * @return List<Workflow>
      * @throws InternalWorkflowException
      */
-    List<Workflow> listWorkflows(int tenantId) throws InternalWorkflowException;
+    List<WorkflowDefinition> listWorkflows(int tenantId) throws InternalWorkflowException;
 
 }
